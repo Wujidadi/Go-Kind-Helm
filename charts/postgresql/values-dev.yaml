@@ -1,0 +1,19 @@
+auth:
+  username: devuser
+  password: devpassword
+  database: goappdb
+  postgresPassword: devrootpassword
+
+primary:
+  service:
+    port: 5432
+  persistence:
+    enabled: false
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 150m
+    memory: 256Mi

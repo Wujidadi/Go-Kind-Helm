@@ -1,0 +1,33 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: go-k8s
+nodes:
+  - role: control-plane
+    extraMounts:
+      - hostPath: /Users/wujidadi/Documents/Workspaces/Kubernetes/go-kind-helm/zsh/root.zsh_history
+        containerPath: /mnt/host-zsh-history/root.zsh_history
+      - hostPath: /Users/wujidadi/Documents/Workspaces/Kubernetes/go-kind-helm/src/app
+        containerPath: /mnt/host-app
+      - hostPath: /Users/wujidadi/Documents/Workspaces/Kubernetes/go-kind-helm/golang
+        containerPath: /go
+    extraPortMappings:
+      - containerPort: 30840
+        hostPort: 840
+        protocol: TCP
+      - containerPort: 30843
+        hostPort: 843
+        protocol: TCP
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+  - role: worker
+    extraMounts:
+      - hostPath: /Users/wujidadi/Documents/Workspaces/Kubernetes/go-kind-helm/zsh/root.zsh_history
+        containerPath: /mnt/host-zsh-history/root.zsh_history
+      - hostPath: /Users/wujidadi/Documents/Workspaces/Kubernetes/go-kind-helm/src/app
+        containerPath: /mnt/host-app
+      - hostPath: /Users/wujidadi/Documents/Workspaces/Kubernetes/go-kind-helm/golang
+        containerPath: /go

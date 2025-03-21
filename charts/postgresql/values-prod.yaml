@@ -1,0 +1,24 @@
+auth:
+  username: produser
+  password: strongprodpassword
+  database: goappdb
+  postgresPassword: strongprodrootpassword
+
+primary:
+  service:
+    port: 5432
+  persistence:
+    enabled: true
+    size: 5Gi
+    storageClass: ""
+
+resources:
+  limits:
+    cpu: 1
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+replication:
+  enabled: false
